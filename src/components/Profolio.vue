@@ -167,32 +167,45 @@
 </template>
 
 <script>
-import { VueTypedJs } from 'vue-typed-js'
+import {VueTypedJs} from 'vue-typed-js'
+import {Slider, SliderItem} from 'vue-easy-slider'
 
 export default {
   name: "myInfo",
   components: {
-    VueTypedJs
-  }
+    VueTypedJs, Slider, SliderItem
+
+  },
+  data() {
+    return {
+      sliderIndex: 1,
+      list: [
+        {url: 'fyp1.png', width: '100%', height: '100%'},
+        {url: 'fyp2.png', width: '100%', height: '100%'},
+        {url: 'fyp3.png', width: '100%', height: '100%'},
+      ],
+    }
+  },
+  methods: {},
 }
 </script>
 
 <style scoped>
 
-.fontStyle{
-  font-family:Verdana, sans-serif;
+.fontStyle {
+  font-family: Verdana, sans-serif;
 }
 
-.options{
+.options {
   font-family: Arial Narrow, sans-serif;
 }
 
-ul{
-  list-style-type:">" ;
+ul {
+  list-style-type: ">";
   list-style-position: inside;
 }
 
-.stroke{
+.stroke {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
 }
