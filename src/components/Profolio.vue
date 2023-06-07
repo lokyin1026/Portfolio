@@ -1,19 +1,19 @@
 <template>
   <div>
     <div class="flex items-center flex-col justify-around min-h-[100vh]">
-      <VueTypedJs class="fontStyle text-[100px] font-bold" :strings="['My Portfolio']">
+      <VueTypedJs class="fontStyle text-[100px] font-bold" :strings="['My Portfolio']" :loop="true" :typeSpeed="100">
         <div class="typing"></div>
       </VueTypedJs>
       <img class="mx-auto" src="Icon.png">
       <div class="flex justify-between options font-extrabold">
-        <a href="#intro" class="mr-[70px] cursor-pointer hover:text-gray-600 hover:text-xl">INTRO</a>
-        <a href="#work" class="cursor-pointer hover:text-gray-600 hover:text-xl">WORK EXPERIENCE</a>
-        <a href="#skills" class="ml-[70px] cursor-pointer hover:text-gray-600 hover:text-xl">SKILLS</a>
+        <a href="#intro" class="mr-[70px] cursor-pointer hover:text-gray-600 hover:text-xl" id="intro-link">INTRO</a>
+        <a href="#work" class="cursor-pointer hover:text-gray-600 hover:text-xl" id="work-link">WORK EXPERIENCE</a>
+        <a href="#skills" class="ml-[70px] cursor-pointer hover:text-gray-600 hover:text-xl" id="skills-link">SKILLS</a>
       </div>
     </div>
     <div id="intro" class="min-h-[100vh] shadow-xl  m-[200px] px-5 bg-slate-200 opacity-90 rounded-xl">
       <div>
-        <VueTypedJs class="fontStyle text-[100px] font-extrabold" :strings="['INTRO']">
+        <VueTypedJs class="fontStyle text-[100px] font-extrabold" :strings="['INTRO']" :loop="true" :typeSpeed="150">
           <div class="typing"></div>
         </VueTypedJs>
       </div>
@@ -38,7 +38,7 @@
       </div>
     </div>
     <div id="work" class="min-h-[100vh] shadow-x m-[200px] px-5 bg-slate-200 opacity-90 rounded-xl">
-      <VueTypedJs class="fontStyle text-[100px] font-extrabold" :strings="['WORK EXPERIENCE']">
+      <VueTypedJs class="fontStyle text-[100px] font-extrabold" :strings="['WORK EXPERIENCE']" :loop="true" :typeSpeed="100">
         <div class="typing"></div>
       </VueTypedJs>
       <div class="flex justify-between flex-col">
@@ -93,7 +93,7 @@
       </div>
     </div>
     <div id="skills" class="min-h-[100vh] shadow-xl  m-[200px] px-5 bg-slate-200 opacity-90 rounded-xl">
-      <VueTypedJs class="fontStyle text-[100px] font-extrabold" :strings="['SKILLS']">
+      <VueTypedJs class="fontStyle text-[100px] font-extrabold" :strings="['SKILLS']" :loop="true" :typeSpeed="150">
         <div class="typing"></div>
       </VueTypedJs>
       <div class="flex justify-around text-center text-xl font-bold">
@@ -124,11 +124,12 @@
           </div>
         </div>
       </div>
-      <VueTypedJs class="fontStyle text-[100px] font-extrabold mt-[109px]" :strings="['PROJECTS']">
+      <VueTypedJs class="fontStyle text-[100px] font-extrabold mt-[109px]" :strings="['PROJECTS']" :loop="true" :typeSpeed="150">
         <div class="typing"></div>
       </VueTypedJs>
       <div class="flex flex-col justify-around">
-        <div class="flex mx-[60px]">
+
+        <div class="shadow-xl mx-[60px] flex flex-row justify-around hover:shadow-2xl mt-[20px]">
           <div class=" w-1/2   mt-[20px]">
             <slider animation="fade">
               <slider-item
@@ -136,14 +137,11 @@
                   :key="index"
                   :style="{width,height}"
               >
-                <img :src="url" style="width:inherit">
+                <img :src="url" style="width: 100%;height: 100%;object-fit: cover;">
               </slider-item>
             </slider>
-          </div>
-          <div>sdsdfsdfsdfsdf</div>
         </div>
-        <div class="shadow-xl mx-[60px] flex justify-around hover:shadow-2xl mt-[20px]">
-
+        <div class="text-4xl font-bold italic">Air Quality Checker</div>
         </div>
         <div class="shadow-xl mx-[60px] flex justify-around hover:shadow-2xl mt-[20px]">
           <div>
@@ -169,6 +167,31 @@
 <script>
 import {VueTypedJs} from 'vue-typed-js'
 import {Slider, SliderItem} from 'vue-easy-slider'
+
+function scrollToElement(selector) {
+  const el = document.querySelector(selector);
+  if (el) {
+    const top = el.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('#intro-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    scrollToElement('#intro');
+  });
+
+  document.querySelector('#work-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    scrollToElement('#work');
+  });
+
+  document.querySelector('#skills-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    scrollToElement('#skills');
+  });
+});
 
 export default {
   name: "myInfo",
